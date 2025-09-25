@@ -47,10 +47,10 @@ const Form = ({ notes, setNotes }) => {
   };
 
   return (
-    <>
+    <div className="text-gray-100 font-mono">
       <button
         onClick={() => setIsFormVisible(!isFormVisible)}
-        className="w-full py-2 px-4 bg-gray-200 border hover:bg-gray-300 border-gray-300 rounded-md cursor-pointer"
+        className="w-full font-mono py-2 px-4 bg-gray-200 border hover:bg-gray-300 text-black font-semibold rounded-sm cursor-pointer"
       >
         {isFormVisible ? "Hide Form" : "Add New Note"}
       </button>
@@ -92,12 +92,12 @@ const Form = ({ notes, setNotes }) => {
             ]}
             onChange={handleChange}
           />
-          <button className="mt-4 w-full py-2 px-2 text-white font-semibold rounded-md bg-green-600 hover:bg-green-800 cursor-pointer">
+          <button className="mt-4 w-full py-2 px-2 text-black font-semibold rounded-sm bg-gray-100 cursor-pointer">
             Add Note
           </button>
         </form>
       )}
-    </>
+    </div>
   );
 };
 export default Form;

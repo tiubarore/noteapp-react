@@ -1,5 +1,33 @@
 @import "tailwindcss";
 
 body {
-  @apply bg-emerald-900;
+  @apply bg-cenere;
+}
+
+@theme {
+  --color-darkred: #780000;
+  --color-lighterred: #c1121f;
+  --color-lightsenape: #fdf0d5;
+  --color-blualga: #003049;
+  --color-celestino: #669bbc;
+  --color-cenere: #212529;
+  --color-pccase: #343a40;
+  --color-grigiomedio: #6c757d;
+  --font-serialc: "serialc", monospace;
+  --font-silka: "Silka", sans-serif;
+}
+@font-face {
+  font-family: "serialc";
+  font-style: normal;
+  font-weight: 200 700;
+  font-display: swap;
+  src: url("/src/assets/SerialC-Medium.ttf") format("ttf");
+}
+
+@font-face {
+  font-family: "Silka";
+  font-style: normal;
+  font-weight: 200 700;
+  font-display: swap;
+  src: url("/src/assets/Silka-Regular.otf") format("otf");
 }
