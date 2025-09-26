@@ -5,7 +5,7 @@ const Textarea = ({ label, name, required = false, value, onChange }) => {
         {label}
       </label>
       <textarea
-        className="border rounded-md py-2 px-4 w-full"
+        className="border rounded-md py-2 px-4 w-full h-36"
         name={name}
         placeholder="Description"
         value={value}

@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 const Note = ({ note, handleDelete }) => {
   return (
     <div
@@ -11,7 +12,7 @@ const Note = ({ note, handleDelete }) => {
       //       : "green",
       // }}
     >
-      <h3 className="font-semibold text-lg">{note.title}</h3>
+      <h3 className="font-bold text-2xl">{note.title}</h3>
       <p className="text-md font-serialc text-gray-100">{note.description}</p>
       <p className="text-sm  text-gray-100">
         <strong>Priority: </strong>
