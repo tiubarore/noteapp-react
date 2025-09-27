@@ -1,5 +1,12 @@
+import { useState } from "react";
 import { Link } from "react-router";
-const Note = ({ note, handleDelete }) => {
+const Note = ({ note, handleDelete, handleEdit }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const shouldCut = note.description.length > 150;
+  const displayText = isExpanded
+    ? note.description
+    : note.description.slice(0, 150);
   return (
     <div
       className="p-4 border border-gray-100 bg-cenere text-gray-100 font-serialc rounded-sm shadow-md border-sm my-3"
@@ -13,21 +20,39 @@ const Note = ({ note, handleDelete }) => {
       // }}
     >
       <h3 className="font-bold text-2xl">{note.title}</h3>
-      <p className="text-md font-serialc text-gray-100">{note.description}</p>
-      <p className="text-sm  text-gray-100">
+      <p className="text-md font-serialc text-gray-100">
+        {displayText}
+        {shouldCut && (
+          <button
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="cursor-pointer ms-3"
+          >
+            {isExpanded ? "Show Less" : "...Read More"}
+          </button>
+        )}
+      </p>
+      {/* <p className="text-sm  text-gray-100">
         <strong>Priority: </strong>
         {note.priority}
       </p>
       <p className="font-mono text-sm text-gray-100">
         <strong>Category: </strong>
         {note.category}
-      </p>
-      <button
-        onClick={() => handleDelete(note.id)}
-        className="w-full mt-4 cursor-pointer text-black font-semibold  bg-gray-100 py-2 px-4 rounded-sm"
-      >
-        Delete
-      </button>
+      </p> */}
+      <div>
+        <button
+          onClick={() => handleDelete(note.id)}
+          className="w-50 mt-4 cursor-pointer text-black font-semibold ms-3  bg-gray-100 py-2 px-4 rounded-sm"
+        >
+          Delete
+        </button>
+        <button
+          onClick={() => handleEdit(note.id)}
+          className="w-50 cursor-pointer text-gray-100 outline py-2 px-4 ms-2 rounded-sm"
+        >
+          Edit
+        </button>
+      </div>
     </div>
   );
 };

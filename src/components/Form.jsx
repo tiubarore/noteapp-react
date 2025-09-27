@@ -70,7 +70,7 @@ const Form = ({ notes, setNotes }) => {
             onChange={handleChange}
             required
           />
-          <SelectInput
+          {/* <SelectInput
             label="Priority"
             name="priority"
             value={formData.priority}
@@ -91,7 +91,7 @@ const Form = ({ notes, setNotes }) => {
               { value: "Ideas", label: "Ideas" },
             ]}
             onChange={handleChange}
-          />
+          /> */}
           <button className="mt-4 w-full py-2 px-2 text-black font-semibold rounded-sm bg-gray-100 cursor-pointer">
             Add Note
           </button>
