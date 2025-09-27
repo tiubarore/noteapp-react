@@ -25,7 +25,7 @@ const Note = ({ note, handleDelete, handleEdit }) => {
         {shouldCut && (
           <button
             onClick={() => setIsExpanded(!isExpanded)}
-            className="cursor-pointer ms-3"
+            className="cursor-pointer ms-3  text-green-300"
           >
             {isExpanded ? "Show Less" : "...Read More"}
           </button>
@@ -42,13 +42,13 @@ const Note = ({ note, handleDelete, handleEdit }) => {
       <div>
         <button
           onClick={() => handleDelete(note.id)}
-          className="w-50 mt-4 cursor-pointer text-black font-semibold ms-3  bg-gray-100 py-2 px-4 rounded-sm"
+          className="w-35 mt-4 cursor-pointer text-black font-semibold ms-3  bg-gray-100 py-2 px-4 rounded-sm"
         >
           Delete
         </button>
         <button
           onClick={() => handleEdit(note.id)}
-          className="w-50 cursor-pointer text-gray-100 outline py-2 px-4 ms-2 rounded-sm"
+          className="w-35 cursor-pointer text-gray-100 outline py-2 px-4 ms-2 rounded-sm"
         >
           Edit
         </button>
