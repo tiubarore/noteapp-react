@@ -132,10 +132,10 @@ const Form = ({
         className="w-full py-2 px-4 bg-gray-100  text-gray-800 font-semibold rounded-sm cursor-pointer "
       >
         {isFormVisible
-          ? "Hide Form"
+          ? "hide Form"
           : isEditMode
-          ? "Continue Editing"
-          : "Add New Note"}
+          ? "continue editing"
+          : "add New Note"}
       </button>
 
       {/* Collapsible Form */}
@@ -145,7 +145,7 @@ const Form = ({
           {isEditMode && (
             <div className="mb-3 p-2 bg-yellow-900/30 border border-yellow-600 rounded">
               <p className="text-yellow-400 text-sm">
-                ✏️ Editing: <strong>{editingNote.title}</strong>
+                ✏️ editing: <strong>{editingNote.title}</strong>
               </p>
             </div>
           )}
@@ -154,14 +154,14 @@ const Form = ({
           <TextInput
             name="title"
             value={formData.title}
-            onChange={handleChange} // ✅ FIXED
+            onChange={handleChange}
             required
           />
 
           <Textarea
             name="description"
             value={formData.description}
-            onChange={handleChange} // ✅ FIXED
+            onChange={handleChange}
             required
           />
 
@@ -171,7 +171,7 @@ const Form = ({
               type="submit"
               className="flex-1 bg-gray-100 text-gray-800 py-2 px-4 rounded-sm font-semibold transition-colors"
             >
-              {isEditMode ? "Update Note" : "Add Note"}
+              {isEditMode ? "update Note" : "add Note"}
             </button>
 
             {/* Cancel Button - only show in edit mode */}
@@ -181,7 +181,7 @@ const Form = ({
                 onClick={handleCancel}
                 className="px-4 py-2 border border-gray-800 text-gray-800 rounded-sm "
               >
-                Cancel
+                cancel
               </button>
             )}
           </div>

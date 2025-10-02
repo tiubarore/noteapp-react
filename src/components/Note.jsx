@@ -18,7 +18,7 @@ const Note = ({ note, handleDelete, handleEdit }) => {
             onClick={() => setIsExpanded(!isExpanded)}
             className="cursor-pointer ms-3  text-green-300"
           >
-            {isExpanded ? "Show Less" : "...Read More"}
+            {isExpanded ? "show Less" : "...read More"}
           </button>
         )}
       </p>
@@ -36,7 +36,7 @@ const Note = ({ note, handleDelete, handleEdit }) => {
           onClick={() => handleDelete(note.id)}
           className="w-35 mt-4 cursor-pointer text-black font-semibold ms-3  bg-gray-100 py-2 px-4 rounded-sm"
         >
-          Delete
+          delete
         </button>
         <button
           onClick={() => {
@@ -45,7 +45,7 @@ const Note = ({ note, handleDelete, handleEdit }) => {
           }}
           className="w-35 cursor-pointer text-gray-100 outline py-2 px-4 ms-2 rounded-sm"
         >
-          Edit
+          edit
         </button>
       </div>
     </div>
