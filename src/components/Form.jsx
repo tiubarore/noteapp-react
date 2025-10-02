@@ -129,7 +129,7 @@ const Form = ({
       {/* Toggle Button - Shows/Hides Form */}
       <button
         onClick={() => setIsFormVisible(!isFormVisible)}
-        className="w-full py-2 px-4 bg-gray-100 hover:bg-gray-800 hover:text-gray-100 text-gray-800 font-semibold rounded-sm cursor-pointer transition-colors"
+        className="w-full py-2 px-4 bg-gray-100  text-gray-800 font-semibold rounded-sm cursor-pointer "
       >
         {isFormVisible
           ? "Hide Form"
@@ -140,7 +140,7 @@ const Form = ({
 
       {/* Collapsible Form */}
       {isFormVisible && (
-        <form onSubmit={handleSubmit} className="mt-4">
+        <form onSubmit={handleSubmit} className="mt-4 text-gray-100">
           {/* Edit mode indicator */}
           {isEditMode && (
             <div className="mb-3 p-2 bg-yellow-900/30 border border-yellow-600 rounded">
@@ -152,7 +152,6 @@ const Form = ({
 
           {/* FIXED: Use handleChange instead of inline functions */}
           <TextInput
-            label="Title"
             name="title"
             value={formData.title}
             onChange={handleChange} // ✅ FIXED
@@ -160,7 +159,6 @@ const Form = ({
           />
 
           <Textarea
-            label="Description"
             name="description"
             value={formData.description}
             onChange={handleChange} // ✅ FIXED
@@ -171,7 +169,7 @@ const Form = ({
             {/* Submit Button - text changes based on mode */}
             <button
               type="submit"
-              className="flex-1 bg-gray-100 hover:bg-gray-800 hover:text-gray-100 text-gray-800 py-2 px-4 rounded-sm font-semibold transition-colors"
+              className="flex-1 bg-gray-100 text-gray-800 py-2 px-4 rounded-sm font-semibold transition-colors"
             >
               {isEditMode ? "Update Note" : "Add Note"}
             </button>
@@ -181,7 +179,7 @@ const Form = ({
               <button
                 type="button"
                 onClick={handleCancel}
-                className="px-4 py-2 border border-gray-800 text-gray-800 hover:bg-gray-800 hover:text-gray-100 rounded-sm transition-colors"
+                className="px-4 py-2 border border-gray-800 text-gray-800 rounded-sm "
               >
                 Cancel
               </button>
