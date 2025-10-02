@@ -8,17 +8,7 @@ const Note = ({ note, handleDelete, handleEdit }) => {
     ? note.description
     : note.description.slice(0, 150);
   return (
-    <div
-      className="p-4 border border-gray-100 bg-cenere text-gray-100 font-serialc rounded-sm shadow-md border-sm my-3"
-      // style={{
-      //   borderLeftColor:
-      //     note.priority === "High"
-      //       ? "red"
-      //       : note.priority === "Medium"
-      //       ? "orange"
-      //       : "green",
-      // }}
-    >
+    <div className="p-4 border border-gray-100 bg-cenere text-gray-100 font-serialc rounded-sm shadow-md border-sm my-3">
       <p>{new Date(note.id).toLocaleDateString()}</p>
       <h3 className="font-bold text-2xl">{note.title}</h3>
       <p className="text-md font-serialc text-gray-100 whitespace-pre-wrap">
@@ -49,7 +39,10 @@ const Note = ({ note, handleDelete, handleEdit }) => {
           Delete
         </button>
         <button
-          onClick={() => handleEdit(note.id)}
+          onClick={() => {
+            handleEdit(note.id);
+            window.scrollTo(0, 0);
+          }}
           className="w-35 cursor-pointer text-gray-100 outline py-2 px-4 ms-2 rounded-sm"
         >
           Edit
