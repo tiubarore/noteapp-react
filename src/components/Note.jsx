@@ -19,9 +19,9 @@ const Note = ({ note, handleDelete, handleEdit }) => {
       //       : "green",
       // }}
     >
-      <p className="">{new Date(note.id).toLocaleDateString()}</p>
+      <p>{new Date(note.id).toLocaleDateString()}</p>
       <h3 className="font-bold text-2xl">{note.title}</h3>
-      <p className="text-md font-serialc text-gray-100 ">
+      <p className="text-md font-serialc text-gray-100 whitespace-pre-wrap">
         {displayText}
         {shouldCut && (
           <button
