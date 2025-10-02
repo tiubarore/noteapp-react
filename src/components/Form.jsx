@@ -1,7 +1,4 @@
-import { useEffect, useState } from "react";
-import TextInput from "./inputs/TextInput";
-import SelectInput from "./inputs/SelectInput";
-import Textarea from "./inputs/Textarea";
+import { useState, useEffect } from "react";
 
 const Form = ({
   notes,
@@ -10,76 +7,80 @@ const Form = ({
   setEditingNote,
   handleUpdate,
 }) => {
-  const [formData, setFormData] = useState({
-    title: "",
-    description: "",
-    priority: "Medium",
-    category: "Ideas",
-  });
+  // Form input states
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
 
+  // CRITICAL: This useEffect "watches" editingNote
+  // Whenever editingNote changes, this code runs
   useEffect(() => {
-    if (isEditMode) {
-      setFormData.description(editingNote.description);
-      setFormData.title(editingNote.title);
+    // If editingNote has a value (not null), we're in EDIT MODE
+    if (editingNote) {
+      // Pre-fill the form with the note's current data
+      setTitle(editingNote.title);
+      setDescription(editingNote.description);
     } else {
-      setFormData.description("");
-      setFormData.title("");
+      // If editingNote is null, we're in ADD MODE
+      // Clear the form fields
+      setTitle("");
+      setDescription("");
     }
-  }, [editingNote]);
+  }, [editingNote]); // Run this whenever editingNote changes
 
-  const [isFormVisible, setIsFormVisible] = useState(false);
-
-  // check if you're in edit mode:
+  // Check if we're in edit mode or add mode
   const isEditMode = editingNote !== null;
 
+  // Handle form submission
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Prevent page refresh
 
-    // validation
-    if (!formData.title || !formData.description) return;
+    // Validation: Don't allow empty title or description
+    if (!title.trim() || !description.trim()) {
+      alert("Please fill in all fields!");
+      return;
+    }
 
+    // BRANCH: Are we editing or adding?
     if (isEditMode) {
+      // === EDIT MODE ===
+      // Create updated note object by keeping the old id
+      // but replacing title and description with new values
       const updatedNote = {
-        ...editingNote,
-        title: formData.title.trim(),
-        description: formData.description.trim(),
+        ...editingNote, // Spread: keep id and any other properties
+        title: title.trim(), // Update with new title
+        description: description.trim(), // Update with new description
       };
+
+      // Call the update function passed from App
       handleUpdate(updatedNote);
     } else {
-      // create new note
+      // === ADD MODE ===
+      // Create a completely new note with a new id
       const newNote = {
-        id: Date.now(),
-        ...formData,
+        id: Date.now(), // Simple unique ID using timestamp
+        title: title.trim(),
+        description: description.trim(),
       };
-      // add notes to state
-      setNotes([newNote, ...notes]);
-      //reset
-      setFormData({
-        title: "",
-        description: "",
-        priority: "Medium",
-        category: "Ideas",
-      });
 
-      setIsFormVisible(!isFormVisible);
+      // Add to the notes array
+      setNotes([...notes, newNote]);
+
+      // Clear the form after adding
+      setTitle("");
+      setDescription("");
     }
   };
 
+  // Handle cancel button (exit edit mode without saving)
   const handleCancel = () => {
-    setEditingNote(null);
-    setFormData.title = "";
-    setFormData.description = "";
-  };
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    setEditingNote(null); // Exit edit mode
+    setTitle(""); // Clear form
+    setDescription("");
   };
 
   return (
     <form onSubmit={handleSubmit} className="mb-6">
+      {/* Visual indicator: Show user they're in edit mode */}
       {isEditMode && (
         <div className="mb-3 p-2 bg-yellow-900/30 border border-yellow-600 rounded">
           <p className="text-yellow-400 text-sm">
@@ -87,20 +88,25 @@ const Form = ({
           </p>
         </div>
       )}
-      <TextInput
-        label="Title"
-        name="title"
-        value={formData.title}
-        onChange={(e) => setFormData(e.target.value)}
-        required
+
+      {/* Title Input */}
+      <input
+        type="text"
+        placeholder="Note Title"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        className="w-full p-2 mb-3 border border-gray-600 bg-gray-800 text-gray-100 rounded"
       />
-      <Textarea
-        label="Description"
-        name="description"
-        value={formData.description}
-        onChange={(e) => setFormData(e.description)}
-        required
+
+      {/* Description Textarea */}
+      <textarea
+        placeholder="Note Description"
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+        className="w-full p-2 mb-3 border border-gray-600 bg-gray-800 text-gray-100 rounded h-24"
       />
+
+      {/* Buttons */}
       <div className="flex gap-2">
         {/* Submit Button - text changes based on mode */}
         <button
@@ -122,58 +128,7 @@ const Form = ({
         )}
       </div>
     </form>
-
-    // <div className="text-gray-100 font-mono">
-    //   <button
-    //     onClick={() => setIsFormVisible(!isFormVisible)}
-    //     className="w-full font-mono py-2 px-4 bg-gray-200 border hover:bg-gray-300 text-black font-semibold rounded-sm cursor-pointer"
-    //   >
-    //     {isFormVisible ? "Hide Form" : "Add New Note"}
-    //   </button>
-    //   {isFormVisible && (
-    //     <form onSubmit={handleSubmit}>
-    //       <TextInput
-    //         label="Title"
-    //         name="title"
-    //         value={formData.title}
-    //         onChange={handleChange}
-    //         required
-    //       />
-    //       <Textarea
-    //         label="Description"
-    //         name="description"
-    //         value={formData.description}
-    //         onChange={handleChange}
-    //         required
-    //       />
-    //       {/* <SelectInput
-    //         label="Priority"
-    //         name="priority"
-    //         value={formData.priority}
-    //         options={[
-    //           { value: "High", label: "High" },
-    //           { value: "Medium", label: "Medium" },
-    //           { value: "Low", label: "Low" },
-    //         ]}
-    //         onChange={handleChange}
-    //       />{" "}
-    //       <SelectInput
-    //         label="Category"
-    //         name="category"
-    //         value={formData.category}
-    //         options={[
-    //           { value: "Work", label: "Work" },
-    //           { value: "Personal", label: "Personal" },
-    //           { value: "Ideas", label: "Ideas" },
-    //         ]}
-    //         onChange={handleChange}
-    //       /> */}
-    //       <button className="mt-4 w-full py-2 px-2 text-black font-semibold rounded-sm bg-gray-100 cursor-pointer">
-    //         Add Note
-    //       </button>
-    //     </form>
-    //   )}
-    // </div>
   );
 };
+
 export default Form;
