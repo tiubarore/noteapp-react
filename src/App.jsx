@@ -18,7 +18,6 @@ function App() {
 
   const handleDelete = (id) => {
     setNotes(notes.filter((note) => note.id !== id));
-    alert("wanna delete this note mate?");
     toast("note deleted");
   };
 
