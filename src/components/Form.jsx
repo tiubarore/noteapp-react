@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import TextInput from "./inputs/TextInput";
 import SelectInput from "./inputs/SelectInput";
 import Textarea from "./inputs/Textarea";
+import { toast } from "sonner";
 
 const Form = ({
   notes,
@@ -88,6 +89,7 @@ const Form = ({
 
       // Add to beginning of notes array
       setNotes([newNote, ...notes]);
+      toast("new note added");
 
       // Reset form
       setFormData({
