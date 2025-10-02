@@ -18,7 +18,7 @@ const Note = ({ note, handleDelete, handleEdit }) => {
             onClick={() => setIsExpanded(!isExpanded)}
             className="cursor-pointer ms-3  text-green-300"
           >
-            {isExpanded ? "show Less" : "...read More"}
+            {isExpanded ? "show less" : "...read more"}
           </button>
         )}
       </p>

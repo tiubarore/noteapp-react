@@ -134,10 +134,10 @@ const Form = ({
         className="w-full py-2 px-4 bg-gray-100  text-gray-800 font-semibold rounded-sm cursor-pointer "
       >
         {isFormVisible
-          ? "hide Form"
+          ? "hide form"
           : isEditMode
           ? "continue editing"
-          : "add New Note"}
+          : "add new note"}
       </button>
 
       {/* Collapsible Form */}
@@ -171,9 +171,9 @@ const Form = ({
             {/* Submit Button - text changes based on mode */}
             <button
               type="submit"
-              className="flex-1 bg-gray-100 text-gray-800 py-2 px-4 rounded-sm font-semibold transition-colors"
+              className="flex-1 bg-gray-100 text-gray-800 py-2 px-4 rounded-sm font-semibold"
             >
-              {isEditMode ? "update Note" : "add Note"}
+              {isEditMode ? "update note" : "add note"}
             </button>
 
             {/* Cancel Button - only show in edit mode */}

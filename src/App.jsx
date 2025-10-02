@@ -38,7 +38,7 @@ function App() {
   return (
     <div className="max-w-lg mx-auto mt-10 p-6 font-serialc shadow-xl rounded-lg">
       <Toaster />
-      <h2 className=" text-gray-300 text-3xl mb-4 text-center">Notes</h2>
+      <h2 className=" text-gray-300 text-3xl mb-4 text-center">notes</h2>
       <Form
         notes={notes}
         setNotes={setNotes}
